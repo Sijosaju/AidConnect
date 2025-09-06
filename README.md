@@ -100,4 +100,4 @@ Offline support for low-connectivity regions.
 
 ## 🌐 Project Link
 
-🔗 AidConnect – Disaster Relief Coordination Platform
+🔗 [AidConnect – Disaster Relief Coordination Platform](https://github.com/Sijosaju/AidConnect)
