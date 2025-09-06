@@ -2,8 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)  
 ![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask&logoColor=white)  
-![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb&logoColor=white)  
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)  
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb&logoColor=white)   
 
 **AidConnect** is a modern web application that **revolutionizes disaster relief coordination** by connecting volunteers at relief camps directly with donors in real-time.  
 
