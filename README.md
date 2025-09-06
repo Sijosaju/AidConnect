@@ -56,3 +56,48 @@ AidConnect/
 │       └── dashboard.js    # Dashboard data visualization
 └── README.md               # Project documentation
 ```
+---
+
+## 🔧 Installation & Setup
+1. Clone the Repository
+```bash
+git clone https://github.com/Sijosaju/AidConnect.git
+cd AidConnect
+```
+
+2. Backend Setup
+
+Navigate to the backend/ folder.
+
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+Run Flask server:
+```bash
+python app.py
+```
+3. Frontend Setup
+
+Navigate to the frontend/ folder.
+
+Open index.html in your browser or use a live server extension (e.g., in VS Code).
+
+🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repo and submit a pull request for improvements.
+
+📌 Future Enhancements
+
+User authentication for secure volunteer & donor login.
+
+Push notifications for urgent needs.
+
+AI-based demand prediction during disasters.
+
+Offline support for low-connectivity regions.
+
+🌐 Project Link
+
+🔗 AidConnect – Disaster Relief Coordination Platform
