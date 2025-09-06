@@ -1,4 +1,4 @@
-# 📱 AidConnect – Disaster Relief Coordination Platform  
+# 🌐 AidConnect – Disaster Relief Coordination Platform  
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)  
 ![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask&logoColor=white)  
