@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template, send_from_directory, redirect, url_for
 from flask_cors import CORS
 from pymongo import MongoClient
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
 
@@ -53,7 +53,14 @@ def serve_js(filename):
 # ===== HTML PAGES =====
 @app.route('/')
 def index():
+    """Home page route - this handles the root URL"""
     return render_template('index.html')
+
+@app.route('/home')
+@app.route('/index.html')
+def home():
+    """Alternative home routes - redirect to main index"""
+    return redirect(url_for('index'))
 
 @app.route('/volunteer')
 @app.route('/volunteer.html')
@@ -61,7 +68,7 @@ def volunteer():
     return render_template('volunteer.html')
 
 @app.route('/donor')
-@app.route('/donor.html')
+@app.route('/donor.html')  
 def donor():
     return render_template('donor.html')
 
@@ -70,40 +77,78 @@ def donor():
 def dashboard():
     return render_template('dashboard.html')
 
+# ===== ERROR HANDLERS =====
+@app.errorhandler(404)
+def page_not_found(error):
+    """Handle 404 errors by redirecting to home page"""
+    print(f"⚠️ 404 Error: {request.url} not found, redirecting to home")
+    return redirect(url_for('index'))
+
+@app.errorhandler(500)  
+def internal_error(error):
+    """Handle 500 errors"""
+    print(f"❌ 500 Error: {error}")
+    return {'success': False, 'error': 'Internal server error'}, 500
+
 # ===== VOLUNTEER API ROUTES =====
 
 @app.route('/api/volunteer/needs', methods=['POST'])
 def create_need():
-    """Volunteer posts a new relief need"""
+    """Volunteer posts a new relief need with duplicate prevention"""
     try:
         data = request.get_json()
+        print(f"📝 Creating need with data: {data}")
         
         # Validate required fields
-        required_fields = ['volunteerName', 'itemName', 'quantity', 'urgency']
+        required_fields = ['volunteerName', 'volunteerPhone', 'itemName', 'quantity', 'urgency']
         for field in required_fields:
             if not data.get(field):
                 return jsonify({'success': False, 'error': f'Missing field: {field}'}), 400
         
+        # Validate phone number
+        phone = data.get('volunteerPhone', '').strip()
+        if not phone or len(phone) < 10:
+            return jsonify({'success': False, 'error': 'Valid phone number is required for donor contact'}), 400
+        
+        # **DUPLICATE CHECK** - Prevent duplicate requests within 1 hour
+        cutoff_time = datetime.utcnow() - timedelta(hours=1)
+        
+        existing_need = needs_collection.find_one({
+            'volunteer_name': data['volunteerName'].strip(),
+            'volunteer_phone': phone,
+            'item_name': data['itemName'].strip(),
+            'status': 'active',
+            'created_at': {'$gte': cutoff_time}
+        })
+        
+        if existing_need:
+            print(f"⚠️ Duplicate request blocked for {data['volunteerName']} - {data['itemName']}")
+            return jsonify({
+                'success': False, 
+                'error': 'Similar request already exists in the last hour. Please wait before submitting again.'
+            }), 409
+        
         # Create need document
         need = {
-            'volunteer_name': data['volunteerName'],
-            'volunteer_phone': data.get('volunteerPhone', ''),
-            'volunteer_email': data.get('volunteerEmail', ''),
-            'volunteer_location': data.get('volunteerLocation', ''),
-            'item_name': data['itemName'],
+            'volunteer_name': data['volunteerName'].strip(),
+            'volunteer_phone': phone,
+            'volunteer_email': data.get('volunteerEmail', '').strip(),
+            'volunteer_location': data.get('volunteerLocation', '').strip(),
+            'item_name': data['itemName'].strip(),
             'required_quantity': int(data['quantity']),
             'donated_quantity': 0,
             'remaining_quantity': int(data['quantity']),
             'urgency_level': data['urgency'],
-            'description': data.get('description', ''),
+            'description': data.get('description', '').strip(),
             'status': 'active',
             'created_at': datetime.utcnow(),
             'updated_at': datetime.utcnow(),
             'donations': []
         }
         
-        # Insert into database
+        # Insert into database - this should only happen once now
         result = needs_collection.insert_one(need)
+        print(f"✅ Need created with ID: {result.inserted_id}")
         
         return jsonify({
             'success': True,
@@ -112,7 +157,7 @@ def create_need():
         }), 201
         
     except Exception as e:
-        print(f"Error creating need: {e}")
+        print(f"❌ Error creating need: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/volunteer/needs', methods=['GET'])
@@ -130,6 +175,7 @@ def get_volunteer_needs():
         
         # Fetch from database
         needs = list(needs_collection.find(query).sort('created_at', -1))
+        print(f"📋 Found {len(needs)} volunteer needs")
         
         # Format response
         for need in needs:
@@ -151,25 +197,27 @@ def get_volunteer_needs():
         }), 200
         
     except Exception as e:
-        print(f"Error fetching volunteer needs: {e}")
+        print(f"❌ Error fetching volunteer needs: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/volunteer/needs/<need_id>', methods=['DELETE'])
 def delete_need(need_id):
     """Delete a relief need"""
     try:
+        print(f"🗑️ Deleting need: {need_id}")
         result = needs_collection.delete_one({'_id': ObjectId(need_id)})
         
         if result.deleted_count == 0:
             return jsonify({'success': False, 'error': 'Need not found'}), 404
         
+        print(f"✅ Need deleted successfully: {need_id}")
         return jsonify({
             'success': True,
             'message': 'Need deleted successfully'
         }), 200
         
     except Exception as e:
-        print(f"Error deleting need: {e}")
+        print(f"❌ Error deleting need: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # ===== DONOR API ROUTES =====
@@ -182,6 +230,8 @@ def get_donor_needs():
         urgency = request.args.get('urgency')
         search = request.args.get('search')
         
+        print(f"🔍 Donor needs request - urgency: {urgency}, search: {search}")
+        
         # Build query
         query = {'status': 'active', 'remaining_quantity': {'$gt': 0}}
         
@@ -193,6 +243,7 @@ def get_donor_needs():
         
         # Fetch from database
         needs = list(needs_collection.find(query).sort('created_at', -1))
+        print(f"📋 Found {len(needs)} donor needs")
         
         # Format response
         for need in needs:
@@ -207,12 +258,15 @@ def get_donor_needs():
             else:
                 need['progress_percentage'] = 0
             
-            # Calculate time since posted
-            time_diff = datetime.utcnow() - need['created_at']
-            if isinstance(need['created_at'], str):
-                from datetime import datetime as dt
-                time_diff = datetime.utcnow() - dt.fromisoformat(need['created_at'])
+            # Calculate time since posted - FIXED VERSION
+            created_at_dt = need['created_at']
+            if isinstance(created_at_dt, str):
+                try:
+                    created_at_dt = datetime.fromisoformat(created_at_dt.replace('Z', '+00:00'))
+                except:
+                    created_at_dt = datetime.utcnow()  # fallback
             
+            time_diff = datetime.utcnow() - created_at_dt
             days = time_diff.days
             hours = time_diff.seconds // 3600
             
@@ -230,14 +284,15 @@ def get_donor_needs():
         }), 200
         
     except Exception as e:
-        print(f"Error fetching donor needs: {e}")
+        print(f"❌ Error fetching donor needs: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/donor/donate', methods=['POST'])
 def make_donation():
-    """Process a donation pledge"""
+    """Process a donation pledge with enhanced donor tracking"""
     try:
         data = request.get_json()
+        print(f"💝 Processing donation: {data}")
         
         # Validate required fields
         required_fields = ['need_id', 'donor_name', 'donor_phone', 'pledged_quantity', 'donation_method']
@@ -261,7 +316,7 @@ def make_donation():
                 'error': f'Only {need["remaining_quantity"]} items remaining'
             }), 400
         
-        # Create donation record
+        # Create enhanced donation record
         donation = {
             'need_id': need_id,
             'donor_name': data['donor_name'],
@@ -272,7 +327,11 @@ def make_donation():
             'delivery_notes': data.get('delivery_notes', ''),
             'status': 'pledged',
             'created_at': datetime.utcnow(),
-            'updated_at': datetime.utcnow()
+            'updated_at': datetime.utcnow(),
+            # Add volunteer info for reference
+            'volunteer_name': need['volunteer_name'],
+            'volunteer_phone': need['volunteer_phone'],
+            'item_name': need['item_name']
         }
         
         # Insert donation
@@ -283,7 +342,20 @@ def make_donation():
         new_remaining = need['required_quantity'] - new_donated
         new_status = 'fulfilled' if new_remaining <= 0 else 'active'
         
-        # Update need in database
+        # Create donor info for the need document
+        donor_info = {
+            'donation_id': str(donation_result.inserted_id),
+            'donor_name': data['donor_name'],
+            'donor_phone': data['donor_phone'],
+            'donor_email': data.get('donor_email', ''),
+            'pledged_quantity': pledged_quantity,
+            'donation_method': data['donation_method'],
+            'delivery_notes': data.get('delivery_notes', ''),
+            'pledge_date': datetime.utcnow().isoformat(),
+            'status': 'pledged'
+        }
+        
+        # Update need in database with donor info
         needs_collection.update_one(
             {'_id': ObjectId(need_id)},
             {
@@ -294,10 +366,12 @@ def make_donation():
                     'updated_at': datetime.utcnow()
                 },
                 '$push': {
-                    'donations': str(donation_result.inserted_id)
+                    'donations': donor_info  # Add complete donor info
                 }
             }
         )
+        
+        print(f"✅ Donation processed successfully: {donation_result.inserted_id}")
         
         return jsonify({
             'success': True,
@@ -313,8 +387,9 @@ def make_donation():
         }), 201
         
     except Exception as e:
-        print(f"Error processing donation: {e}")
+        print(f"❌ Error processing donation: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
+
 
 # ===== DASHBOARD API ROUTES =====
 
@@ -327,11 +402,20 @@ def get_dashboard_data():
         fulfilled_needs = list(needs_collection.find({'status': 'fulfilled'}))
         all_donations = list(donations_collection.find())
         
+        print(f"📊 Dashboard stats - Active: {len(active_needs)}, Fulfilled: {len(fulfilled_needs)}, Donations: {len(all_donations)}")
+        
         # Format data
         for need in active_needs + fulfilled_needs:
             need['_id'] = str(need['_id'])
             need['created_at'] = need['created_at'].isoformat()
             need['updated_at'] = need['updated_at'].isoformat()
+            
+            # Calculate progress percentage
+            if need['required_quantity'] > 0:
+                progress = (need['donated_quantity'] / need['required_quantity']) * 100
+                need['progress_percentage'] = round(progress, 1)
+            else:
+                need['progress_percentage'] = 0
         
         # Calculate statistics
         stats = {
@@ -349,7 +433,7 @@ def get_dashboard_data():
         }), 200
         
     except Exception as e:
-        print(f"Error fetching dashboard data: {e}")
+        print(f"❌ Error fetching dashboard data: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # ===== UTILITY ROUTES =====
@@ -359,21 +443,13 @@ def health_check():
     """Health check endpoint"""
     return {'status': 'healthy', 'message': 'AidConnect API is running'}, 200
 
-# Error handlers
-@app.errorhandler(404)
-def not_found(error):
-    return {'success': False, 'error': 'Endpoint not found'}, 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return {'success': False, 'error': 'Internal server error'}, 500
-
-# Run the application
+# ===== APPLICATION STARTUP =====
 if __name__ == '__main__':
     print("🚀 Starting AidConnect Server...")
     print("📱 Frontend: http://localhost:5000")
     print("🔌 API Base: http://localhost:5000/api")
     print(f"🗃️  Database: {DB_NAME}")
+    print("=" * 50)
     
     app.run(
         host='0.0.0.0',
