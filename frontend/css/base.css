@@ -668,3 +668,17 @@ body {
         font-size: var(--font-size-xs); 
     }
 }
+body {
+    padding-top: 5rem; /* Reserve space for fixed navbar */
+}
+
+/* Specific fixes for page headers */
+.portal-header, 
+.page-header, 
+.hero-section,
+.donor-header,
+.volunteer-header,
+.dashboard-header {
+    margin-top: 0; /* Reset any existing margins */
+    padding-top: 1rem; /* Add some breathing room */
+}
