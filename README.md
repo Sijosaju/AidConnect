@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)  
 ![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask&logoColor=white)  
-![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb&logoColor=white)   
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb&logoColor=white)  
 
 **AidConnect** is a modern web application that **revolutionizes disaster relief coordination** by connecting volunteers at relief camps directly with donors in real-time.  
 
@@ -55,9 +55,8 @@ AidConnect/
 │       ├── volunteer.js    # Volunteer functionality & forms
 │       └── dashboard.js    # Dashboard data visualization
 └── README.md               # Project documentation
-
-
-🔧 Installation & Setup
+---
+## 📥 Installation & Setup
 ✅ Prerequisites
 
 Python 3.8+
@@ -68,123 +67,46 @@ A modern web browser
 
 ⚙️ Steps
 
-Clone the repository
 
-git clone https://github.com/yourusername/AidConnect.git
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Sijosaju/AidConnect.git
 cd AidConnect
 
+### 2. Backend Setup
 
-Backend Setup
+Navigate to the backend/ folder.
 
-cd backend
-python -m venv venv
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
+Install dependencies:
+```bash
 pip install -r requirements.txt
 
 
-Environment Variables
-Create a .env file inside backend/ and add:
-
-MONGO_URI=your_mongodb_atlas_connection_string
-DB_NAME=aidconnect_db
-
-
-Run the Application
-
+Run Flask server:
+```bash
 python app.py
 
+### 3. Frontend Setup
 
-Open your browser at 👉 http://localhost:5000
+Navigate to the frontend/ folder.
 
-🎯 Usage Guide
-👩‍💼 For Volunteers
+Open index.html in your browser or use a live server extension (e.g., in VS Code).
 
-Post urgent needs (items, quantity, location, urgency).
+## 🤝 Contributing
 
-Monitor donations and fulfillment progress.
-
-Contact donors directly for delivery arrangements.
-
-🙌 For Donors
-
-Browse active needs by urgency or item type.
-
-Pledge donations instantly.
-
-Coordinate delivery with volunteers.
-
-Track your contribution impact in real time.
-
-🌟 Key Features Deep Dive
-
-🔒 Smart Duplicate Prevention – Time-based validation & intelligent matching to avoid spam while allowing urgent updates.
-
-⚡ Real-time Coordination – Automatic live updates across donor, volunteer, and dashboard portals.
-
-📱 Mobile-First Design – Touch-optimized, responsive layouts for on-the-go volunteers.
-
-🌐 Offline-Friendly – Resilient design for areas with unstable connectivity.
-
-📊 Impact Metrics
-
-1,000+ Lives Helped – Direct beneficiaries
-
-500+ Successful Donations – Verified deliveries
-
-24/7 Real-time Updates – Continuous coordination
-
-Zero Bureaucratic Delays – Direct volunteer-donor communication
-
-🤝 Contributing
-
-We welcome contributions to make AidConnect even better!
-
-Development Workflow
-
-Fork the repo
-
-Create a branch: git checkout -b feature/my-feature
-
-Make changes & test
-
-Commit: git commit -m 'Add my feature'
-
-Push: git push origin feature/my-feature
-
-Open a Pull Request 🎉
-
-Areas for Contribution
-
-🔔 Notifications (SMS, Email, Push)
-
-🌐 Localization (multi-language support)
-
-📱 Native Mobile Apps (iOS/Android)
-
-🤖 AI Integration (intelligent donor-need matching)
-
-📈 Advanced Analytics (predictive insights)
+Contributions are welcome! Feel free to fork the repo and submit a pull request for improvements.
 
 📌 Future Enhancements
 
-🔔 Real-time Notifications
+User authentication for secure volunteer & donor login.
 
-📊 Predictive Disaster Analytics
+Push notifications for urgent needs.
 
-🌍 Multi-language Support
+AI-based demand prediction during disasters.
 
-🤖 AI-powered Donor Matching
+Offline support for low-connectivity regions.
 
-📱 Mobile Applications
+## 🌐 Project Link
 
-🗺️ GIS-based Location Mapping
-
-🌐 Project Link
-
-🔗 AidConnect – Disaster Relief Platform
+🔗 AidConnect – Disaster Relief Coordination Platform
