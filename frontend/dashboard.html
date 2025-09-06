@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Dashboard - Relief Camp Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Navigation -->
+    <nav class="navbar portal-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>Relief Camp Connect</span>
+            </div>
+            <div class="portal-nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="volunteer.html" class="nav-link">
+                    <i class="fas fa-user-friends"></i> Volunteer Portal
+                </a>
+                <a href="donor.html" class="nav-link">
+                    <i class="fas fa-heart"></i> Donor Portal
+                </a>
+            </div>
+            <div class="dashboard-controls">
+                <button class="btn btn-ghost btn-small" id="exportDashboard">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button class="btn btn-ghost btn-small" id="refreshDashboard">
+                    <i class="fas fa-sync"></i> <span id="refreshText">Refresh</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-hero">
+                <div class="hero-content">
+                    <div class="dashboard-title">
+                        <h1><i class="fas fa-chart-line"></i> Impact Dashboard</h1>
+                        <p>Real-time transparency in disaster relief operations</p>
+                    </div>
+                    <div class="last-updated">
+                        <i class="fas fa-clock"></i>
+                        <span>Last updated: <span id="lastUpdated">Loading...</span></span>
+                        <div class="live-indicator">
+                            <span class="pulse"></span>
+                            LIVE
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Content -->
+    <div class="container">
+        <div class="dashboard-content">
+            <!-- Key Metrics Overview -->
+            <section class="metrics-overview">
+                <div class="metrics-grid">
+                    <div class="metric-card primary">
+                        <div class="metric-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="activeNeedsCount">0</div>
+                            <div class="metric-label">Active Relief Requests</div>
+                            <div class="metric-change positive" id="activeChange">
+                                <i class="fas fa-arrow-up"></i> +3 this hour
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card success">
+                        <div class="metric-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="fulfilledCount">0</div>
+                            <div class="metric-label">Requests Fulfilled</div>
+                            <div class="metric-change positive" id="fulfilledChange">
+                                <i class="fas fa-arrow-up"></i> +7 today
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card info">
+                        <div class="metric-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="totalDonations">0</div>
+                            <div class="metric-label">Total Donations</div>
+                            <div class="metric-change positive" id="donationsChange">
+                                <i class="fas fa-arrow-up"></i> +15 today
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card warning">
+                        <div class="metric-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="criticalCount">0</div>
+                            <div class="metric-label">Critical Priority</div>
+                            <div class="metric-change" id="criticalChange">
+                                <i class="fas fa-minus"></i> No change
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Overview -->
+            <section class="progress-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> Overall Progress</h2>
+                    <div class="progress-stats">
+                        <span class="progress-stat">
+                            <span class="stat-value" id="completionRate">0%</span>
+                            <span class="stat-label">Completion Rate</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="progress-cards">
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <span class="progress-title">Emergency Supplies</span>
+                            <span class="progress-value" id="suppliesProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="suppliesBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <span class="progress-title">Medical Equipment</span>
+                            <span class="progress-value" id="medicalProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medical" id="medicalBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <span class="progress-title">Food & Water</span>
+                            <span class="progress-value" id="foodProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill food" id="foodBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Table Section -->
+            <section class="data-table-section">
+                <div class="table-header">
+                    <div class="table-title">
+                        <h2><i class="fas fa-table"></i> Detailed Relief Operations</h2>
+                        <p>Complete transparency of all relief activities</p>
+                    </div>
+                    <div class="table-controls">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="tableSearch" placeholder="Search operations...">
+                        </div>
+                        <div class="filter-dropdown">
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="active">Active Only</option>
+                                <option value="fulfilled">Fulfilled Only</option>
+                                <option value="critical">Critical Priority</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="dashboardTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="item">
+                                    <i class="fas fa-boxes"></i> Relief Item
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="required">
+                                    <i class="fas fa-sort-numeric-up"></i> Required
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="donated">
+                                    <i class="fas fa-hand-holding"></i> Donated
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="remaining">
+                                    <i class="fas fa-hourglass-half"></i> Remaining
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="progress">
+                                    <i class="fas fa-percentage"></i> Progress
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="status">
+                                    <i class="fas fa-flag"></i> Status
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th class="sortable" data-sort="volunteer">
+                                    <i class="fas fa-user"></i> Volunteer
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th>
+                                    <i class="fas fa-clock"></i> Updated
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Dynamic content will be loaded here -->
+                        </tbody>
+                    </table>
+                    
+                    <div class="table-empty hidden" id="tableEmpty">
+                        <div class="empty-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <h3>No Data Available</h3>
+                        <p>Relief operations data will appear here once volunteers start posting needs.</p>
+                        <a href="volunteer.html" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add First Need
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Feed -->
+            <section class="activity-feed">
+                <div class="feed-header">
+                    <h3><i class="fas fa-stream"></i> Live Activity Feed</h3>
+                    <div class="feed-controls">
+                        <button class="btn btn-ghost btn-small" id="pauseFeed">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="btn btn-ghost btn-small" id="clearFeed">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity-list" id="activityFeed">
+                    <div class="activity-item">
+                        <div class="activity-icon new">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-text">System initialized - Ready to track relief operations</span>
+                            <span class="activity-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading dashboard data...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
