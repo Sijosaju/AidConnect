@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donor Portal - Relief Camp Connect</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Donor Portal - AidConnect</title>
+    <link rel="stylesheet" href="css/donor.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="portal-page">
     <!-- Navigation -->
@@ -14,7 +14,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-hands-helping"></i>
-                <span>Relief Camp Connect</span>
+                <span>AidConnect</span>
             </div>
             <div class="portal-nav-links">
                 <a href="index.html" class="nav-link">
@@ -40,16 +40,16 @@
                 <div class="portal-info">
                     <h1 class="portal-title">Donor Impact Hub</h1>
                     <p class="portal-subtitle">
-                        Transform lives through strategic giving. Every donation is tracked, 
-                        every impact is measured, every life matters.
+                        Connect directly with relief camps and volunteers. Make targeted donations 
+                        and see your impact in real-time.
                     </p>
                     <div class="impact-preview">
                         <div class="impact-stat">
-                            <span class="impact-number">2,847</span>
+                            <span class="impact-number">80</span>
                             <span class="impact-label">Lives Touched Today</span>
                         </div>
                         <div class="impact-stat">
-                            <span class="impact-number">$12,450</span>
+                            <span class="impact-number">124</span>
                             <span class="impact-label">Donations This Week</span>
                         </div>
                     </div>
@@ -62,102 +62,75 @@
     <div class="container">
         <div class="portal-content">
             <!-- Donor Profile Section -->
-            <section class="content-card donor-profile">
+   
+
+            <!-- How to Donate Section -->
+            <section class="content-card donation-methods">
                 <div class="card-header">
-                    <div class="header-icon">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="header-text">
-                        <h2>Your Giving Profile</h2>
-                        <p>Personalize your donation experience</p>
+                    <div class="header-info">
+                        <div class="header-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="header-text">
+                            <h2>How to Make Your Donation</h2>
+                            <p>Choose your preferred donation method</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="donor-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="donorName">
-                                <i class="fas fa-signature"></i>
-                                Display Name (Optional)
-                            </label>
-                            <input type="text" id="donorName" placeholder="How would you like to be recognized?">
+                <div class="donation-methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-handshake"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="donorType">
-                                <i class="fas fa-tags"></i>
-                                Donor Type
-                            </label>
-                            <select id="donorType">
-                                <option value="individual">Individual Donor</option>
-                                <option value="organization">Organization</option>
-                                <option value="anonymous">Anonymous</option>
-                            </select>
+                        <h3>Direct Contact</h3>
+                        <p>Contact volunteer directly via phone/email to arrange donation pickup or delivery</p>
+                        <ul>
+                            <li>✓ Personal connection with volunteers</li>
+                            <li>✓ Flexible arrangement</li>
+                            <li>✓ Real-time coordination</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-truck"></i>
                         </div>
+                        <h3>Direct Delivery</h3>
+                        <p>Visit the relief camp location and deliver items directly to volunteers on-site</p>
+                        <ul>
+                            <li>✓ See impact firsthand</li>
+                            <li>✓ Meet beneficiaries</li>
+                            <li>✓ Immediate fulfillment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Digital Pledge</h3>
+                        <p>Make a digital commitment and coordinate with volunteers for fulfillment</p>
+                        <ul>
+                            <li>✓ Quick and easy</li>
+                            <li>✓ Tracked digitally</li>
+                            <li>✓ Flexible timing</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Urgent Needs Banner -->
-            <div id="urgentBanner" class="urgent-banner hidden">
-                <div class="urgent-content">
-                    <div class="urgent-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <div class="urgent-text">
-                        <h3>Critical Needs Alert!</h3>
-                        <p>Several relief camps have urgent requirements that need immediate attention.</p>
-                    </div>
-                    <button class="urgent-action" onclick="scrollToUrgent()">
-                        View Critical Needs
-                    </button>
-                </div>
-            </div>
-
-            <!-- Filter and Search -->
-            <section class="content-card filter-section">
-                <div class="filter-header">
-                    <h3><i class="fas fa-filter"></i> Find Needs to Support</h3>
-                    <div class="view-toggle">
-                        <button class="toggle-btn active" data-view="grid">
-                            <i class="fas fa-th-large"></i>
-                        </button>
-                        <button class="toggle-btn" data-view="list">
-                            <i class="fas fa-list"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="filter-controls">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchNeeds" placeholder="Search relief items...">
-                    </div>
-                    <div class="filter-tags">
-                        <button class="filter-tag active" data-filter="all">All Needs</button>
-                        <button class="filter-tag" data-filter="critical">🔴 Critical</button>
-                        <button class="filter-tag" data-filter="high">🟡 High Priority</button>
-                        <button class="filter-tag" data-filter="medium">🟢 Medium</button>
-                    </div>
-                    <div class="sort-dropdown">
-                        <select id="sortNeeds">
-                            <option value="urgency">Sort by Urgency</option>
-                            <option value="newest">Newest First</option>
-                            <option value="progress">By Progress</option>
-                            <option value="quantity">By Quantity Needed</option>
-                        </select>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Available Needs -->
+            <!-- Active Needs with Contact Info -->
             <section class="content-card needs-showcase">
                 <div class="card-header">
-                    <div class="header-icon">
-                        <i class="fas fa-heart-circle-plus"></i>
-                    </div>
-                    <div class="header-text">
-                        <h2>Active Relief Needs</h2>
-                        <p id="needsCount">Loading available opportunities to help...</p>
+                    <div class="header-info">
+                        <div class="header-icon">
+                            <i class="fas fa-heart-circle-plus"></i>
+                        </div>
+                        <div class="header-text">
+                            <h2>Active Relief Needs</h2>
+                            <p id="needsCount">Browse needs and connect with volunteers</p>
+                        </div>
                     </div>
                     <div class="header-actions">
                         <button class="btn btn-ghost btn-small" id="refreshDonations">
@@ -168,8 +141,71 @@
                 </div>
                 
                 <div id="needsList" class="needs-grid">
-                    <!-- Dynamic content will be loaded here -->
-                    <div class="empty-state">
+                    <!-- Sample Need Card with Contact Info -->
+                    <div class="need-card urgency-critical">
+                        <div class="need-card-header">
+                            <h3>Emergency Blankets</h3>
+                            <span class="urgency-badge critical">🔴 CRITICAL</span>
+                        </div>
+                        
+                        <div class="need-meta">
+                            <div class="need-quantity">
+                                <strong>Still needed:</strong> 35 out of 50
+                            </div>
+                            <div class="need-volunteer">
+                                Posted by: <strong>Camp Coordinator Sarah</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-section">
+                            <div class="progress-info">
+                                <span class="progress-label">Progress</span>
+                                <span class="progress-percentage">30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Volunteer Contact Info -->
+                        <div class="volunteer-contact">
+                            <h4><i class="fas fa-user"></i> Volunteer Contact</h4>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+91 98765 43210</span>
+                                    <button class="btn-copy" data-copy="+91 98765 43210">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>sarah.camp@reliefops.org</span>
+                                    <button class="btn-copy" data-copy="sarah.camp@reliefops.org">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Relief Camp - Sector 15, New Delhi</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="openDonationModal('need123', 'Emergency Blankets', 35)">
+                                <i class="fas fa-heart"></i>
+                                Pledge Donation
+                            </button>
+                            <button class="btn btn-outline" onclick="contactVolunteer('+91 98765 43210')">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty state when no needs -->
+                    <div class="empty-state hidden">
                         <div class="empty-icon">
                             <i class="fas fa-heart-crack"></i>
                         </div>
@@ -182,33 +218,11 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Donation Summary -->
-            <section class="donation-summary">
-                <div class="summary-card">
-                    <div class="summary-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="summary-content">
-                        <h3>Your Session Impact</h3>
-                        <div class="summary-stats">
-                            <div class="summary-stat">
-                                <span class="stat-value" id="sessionDonations">0</span>
-                                <span class="stat-label">Donations Made</span>
-                            </div>
-                            <div class="summary-stat">
-                                <span class="stat-value" id="sessionImpact">0</span>
-                                <span class="stat-label">Items Pledged</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     </div>
 
-    <!-- Donation Modal -->
-    <div id="donationModal" class="modal">
+    <!-- Enhanced Donation Modal with Connection Options -->
+    <div id="donationModal" class="modal hidden">
         <div class="modal-backdrop"></div>
         <div class="modal-content donation-modal">
             <div class="modal-header">
@@ -221,6 +235,34 @@
             <div class="modal-body">
                 <div id="donationDetails" class="donation-details">
                     <!-- Dynamic content will be inserted here -->
+                </div>
+                
+                <!-- Donation Method Selection -->
+                <div class="donation-method-selection">
+                    <h4><i class="fas fa-route"></i> How would you like to donate?</h4>
+                    <div class="method-options">
+                        <label class="method-option">
+                            <input type="radio" name="donationMethod" value="direct" checked>
+                            <div class="option-content">
+                                <i class="fas fa-handshake"></i>
+                                <span>Contact volunteer directly</span>
+                            </div>
+                        </label>
+                        <label class="method-option">
+                            <input type="radio" name="donationMethod" value="delivery">
+                            <div class="option-content">
+                                <i class="fas fa-truck"></i>
+                                <span>Arrange delivery to camp</span>
+                            </div>
+                        </label>
+                        <label class="method-option">
+                            <input type="radio" name="donationMethod" value="pledge">
+                            <div class="option-content">
+                                <i class="fas fa-clipboard-check"></i>
+                                <span>Digital pledge (coordinate later)</span>
+                            </div>
+                        </label>
+                    </div>
                 </div>
                 
                 <div class="donation-form">
@@ -242,10 +284,20 @@
                         </div>
                     </div>
                     
-                    <div class="donation-impact">
-                        <div class="impact-preview">
-                            <i class="fas fa-users"></i>
-                            <span id="impactText">Your donation will help X families</span>
+                    <!-- Delivery Information (shown when delivery option selected) -->
+                    <div id="deliveryInfo" class="delivery-info hidden">
+                        <h4><i class="fas fa-map-marker-alt"></i> Delivery Details</h4>
+                        <div class="form-group">
+                            <label for="deliveryTime">Preferred delivery time:</label>
+                            <select id="deliveryTime">
+                                <option value="morning">Morning (9 AM - 12 PM)</option>
+                                <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                                <option value="evening">Evening (4 PM - 7 PM)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryNotes">Special instructions:</label>
+                            <textarea id="deliveryNotes" placeholder="Any special delivery instructions..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -263,24 +315,31 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
+    <!-- Contact Success Modal -->
+    <div id="contactModal" class="modal hidden">
         <div class="modal-backdrop"></div>
         <div class="modal-content success-modal">
-            <div class="success-animation">
-                <div class="checkmark-circle">
-                    <i class="fas fa-check"></i>
+            <div class="contact-success">
+                <div class="success-icon">
+                    <i class="fas fa-phone-alt"></i>
                 </div>
-            </div>
-            <h3>Donation Successful!</h3>
-            <p>Thank you for your generosity. Your donation has been pledged and will make a real difference.</p>
-            <div class="success-actions">
-                <button class="btn btn-primary" onclick="closeSuccessModal()">
-                    Continue Helping
-                </button>
-                <button class="btn btn-outline" onclick="location.href='dashboard.html'">
-                    View Impact
-                </button>
+                <h3>Contact Information</h3>
+                <div id="contactDetails" class="contact-details-modal">
+                    <!-- Contact info will be populated here -->
+                </div>
+                <div class="contact-actions">
+                    <button class="btn btn-primary" id="makeCall">
+                        <i class="fas fa-phone"></i>
+                        Call Now
+                    </button>
+                    <button class="btn btn-outline" id="sendEmail">
+                        <i class="fas fa-envelope"></i>
+                        Send Email
+                    </button>
+                    <button class="btn btn-ghost" onclick="closeContactModal()">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -299,3 +358,5 @@
     <script src="js/donor.js"></script>
 </body>
 </html>
+
+

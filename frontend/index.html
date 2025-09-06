@@ -3,215 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relief Camp Connect - Disaster Relief Management System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>AidConnect - Disaster Relief Made Simple</title>
+    <meta name="description" content="Bridge relief camps with generous donors. Make disaster response faster, more transparent, and more effective with AidConnect.">
+    <link rel="stylesheet" href="css/base.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Header -->
-    <nav class="navbar">
+    <!-- Modern Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="#home" class="nav-logo">
                 <i class="fas fa-hands-helping"></i>
-                <span>Relief Camp Connect</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+                AidConnect
+            </a>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="#how-it-works" class="nav-link"><i class="fas fa-cogs"></i>How It Works</a></li>
+                <li><a href="#impact" class="nav-link"><i class="fas fa-chart-line"></i>Impact</a></li>
+                <li><a href="volunteer.html" class="nav-link"><i class="fas fa-user-friends"></i>For Volunteers</a></li>
+                <li><a href="donor.html" class="nav-link nav-cta"><i class="fas fa-heart"></i>Start Helping</a></li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="hero-particles"></div>
-        </div>
+    <section class="hero-section" id="home">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="highlight">Connecting Hearts</span>
-                    <br>in Times of Crisis
-                </h1>
-                <p class="hero-subtitle">
-                    Bridge the gap between relief camps and generous donors. 
-                    Make disaster response faster, more transparent, and more effective.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="10000">0</div>
-                        <div class="stat-label">Lives Helped</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="500">0</div>
-                        <div class="stat-label">Camps Connected</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="50000">0</div>
-                        <div class="stat-label">Donations Made</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card floating">
-                    <div class="card-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>Real-time Impact</h3>
-                        <p>See your donations make a difference instantly</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Role Selection Section -->
-    <section class="roles">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Choose Your Role</h2>
-                <p class="section-subtitle">Join our community of heroes making a difference</p>
+            <h1 class="hero-title">
+                Bridge Relief Camps with Generous Hearts
+            </h1>
+            <p class="hero-subtitle">
+                Make disaster response faster, more transparent, and more effective. 
+                Connect volunteers with donors in real-time for maximum impact.
+            </p>
+            
+            <div class="hero-cta-group">
+                <a href="donor.html" class="hero-cta hero-cta-primary">
+                    <i class="fas fa-heart"></i>
+                    Start Donating
+                </a>
+                <a href="volunteer.html" class="hero-cta hero-cta-secondary">
+                    <i class="fas fa-user-friends"></i>
+                    I'm a Volunteer
+                </a>
             </div>
             
-            <div class="role-cards">
-                <div class="role-card volunteer-card">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon-large">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <h3>Relief Volunteer</h3>
-                        <p>On the ground helping those in need</p>
-                    </div>
-                    <div class="card-body">
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> Post urgent relief needs</li>
-                            <li><i class="fas fa-check"></i> Track donation progress</li>
-                            <li><i class="fas fa-check"></i> Update requirements in real-time</li>
-                            <li><i class="fas fa-check"></i> Connect directly with donors</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer">
-                        <a href="volunteer.html" class="btn btn-primary btn-large">
-                            <i class="fas fa-rocket"></i>
-                            Start Helping
-                        </a>
-                    </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Lives Helped</span>
                 </div>
-
-                <div class="role-card donor-card">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon-large">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        <h3>Generous Donor</h3>
-                        <p>Making a difference through giving</p>
-                    </div>
-                    <div class="card-body">
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> Browse verified relief needs</li>
-                            <li><i class="fas fa-check"></i> Make targeted donations</li>
-                            <li><i class="fas fa-check"></i> See real-time impact</li>
-                            <li><i class="fas fa-check"></i> Full transparency on usage</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer">
-                        <a href="donor.html" class="btn btn-secondary btn-large">
-                            <i class="fas fa-heart"></i>
-                            Start Giving
-                        </a>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Successful Donations</span>
                 </div>
-            </div>
-
-            <div class="dashboard-cta">
-                <div class="cta-content">
-                    <div class="cta-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="cta-text">
-                        <h3>Complete Transparency</h3>
-                        <p>Monitor all relief activities in real-time</p>
-                    </div>
-                    <a href="dashboard.html" class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i>
-                        View Dashboard
-                    </a>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Real-time Updates</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section class="features-section" id="how-it-works">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose Relief Camp Connect?</h2>
-                <p class="section-subtitle">Built for efficiency, designed for impact</p>
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">
+                    How AidConnect Works
+                </h2>
+                <p style="font-size: 1.2rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Three simple steps to make a meaningful difference in disaster relief efforts
+                </p>
             </div>
             
             <div class="features-grid">
-                <div class="feature-item">
+                <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Real-time updates ensure urgent needs are met immediately</p>
+                    <h3 class="feature-title">Volunteers Post Needs</h3>
+                    <p class="feature-description">
+                        Relief camp volunteers quickly post urgent supply needs with quantities, 
+                        locations, and priority levels in real-time.
+                    </p>
                 </div>
-                <div class="feature-item">
+                
+                <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <h3>Verified & Secure</h3>
-                    <p>All relief camps are verified for authentic disaster response</p>
+                    <h3 class="feature-title">Donors Respond Fast</h3>
+                    <p class="feature-description">
+                        Generous donors browse active needs, pledge specific quantities, 
+                        and coordinate directly with volunteers for delivery.
+                    </p>
                 </div>
-                <div class="feature-item">
+                
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h3>Full Transparency</h3>
-                    <p>Track exactly where your donations go and their impact</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Ready</h3>
-                    <p>Access from anywhere, help from everywhere</p>
+                    <h3 class="feature-title">Track Impact Live</h3>
+                    <p class="feature-description">
+                        Everyone sees real-time progress, fulfilled donations, and the direct 
+                        impact of their contributions on relief efforts.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Impact Section -->
+    <section id="impact" style="padding: 5rem 0; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-hands-helping"></i>
-                    <span>Relief Camp Connect</span>
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1rem;">
+                    Real Impact, Real Results
+                </h2>
+                <p style="font-size: 1.2rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Built for efficiency, designed for impact
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Updates</h3>
+                    <p class="feature-description">
+                        Real-time updates ensure urgent needs are met immediately. 
+                        See your donations make a difference instantly.
+                    </p>
                 </div>
-                <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#support">Support</a>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Verified Relief Camps</h3>
+                    <p class="feature-description">
+                        All relief camps are verified for authentic disaster response. 
+                        Your donations reach the right people.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Access Anywhere</h3>
+                    <p class="feature-description">
+                        Access from anywhere, help from everywhere. 
+                        Track exactly where your donations go and their impact.
+                    </p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Relief Camp Connect. Built with ❤️ for humanity.</p>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section style="padding: 5rem 0; background: var(--primary-gradient); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">
+                Join Our Community of Heroes
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Whether you're on the ground helping those in need or making a difference through giving, 
+                AidConnect brings us all together for maximum impact.
+            </p>
+            
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="volunteer.html" class="hero-cta hero-cta-secondary">
+                    <i class="fas fa-user-plus"></i>
+                    Join as Volunteer
+                </a>
+                <a href="donor.html" class="hero-cta hero-cta-primary">
+                    <i class="fas fa-donate"></i>
+                    Start Donating Now
+                </a>
+                <a href="dashboard.html" class="hero-cta hero-cta-secondary">
+                    <i class="fas fa-chart-bar"></i>
+                    View Live Dashboard
+                </a>
             </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 3rem 0; background: var(--gray-900); color: var(--gray-400); text-align: center;">
+        <div class="container">
+            <div class="nav-logo" style="justify-content: center; margin-bottom: 1rem; color: var(--gray-300);">
+                <i class="fas fa-hands-helping"></i>
+                AidConnect
+            </div>
+            <p style="margin-bottom: 1.5rem;">
+                Connecting relief camps with generous donors for faster, more effective disaster response.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <a href="volunteer.html" style="color: var(--gray-400); text-decoration: none;">Volunteer Portal</a>
+                <a href="donor.html" style="color: var(--gray-400); text-decoration: none;">Donor Portal</a>
+                <a href="dashboard.html" style="color: var(--gray-400); text-decoration: none;">Dashboard</a>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--gray-500);">
+                © 2025 AidConnect. Made with ❤️ for humanitarian causes.
+            </p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navbar = document.getElementById('navbar');
+
+        mobileToggle?.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe stat items
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
+

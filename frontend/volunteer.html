@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Portal - Relief Camp Connect</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Volunteer Portal - AidConnect</title>
+    <link rel="stylesheet" href="css/volunteer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="portal-page">
     <!-- Navigation -->
@@ -14,7 +14,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-hands-helping"></i>
-                <span>Relief Camp Connect</span>
+                <span>AidConnect</span>
             </div>
             <div class="portal-nav-links">
                 <a href="index.html" class="nav-link">
@@ -68,12 +68,14 @@
             <!-- Add New Need Section -->
             <section class="content-card add-need-section">
                 <div class="card-header">
-                    <div class="header-icon">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-                    <div class="header-text">
-                        <h2>Request Emergency Supplies</h2>
-                        <p>Add critical needs for your relief camp</p>
+                    <div class="header-info">
+                        <div class="header-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="header-text">
+                            <h2>Request Emergency Supplies</h2>
+                            <p>Add critical needs for your relief camp</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -82,39 +84,66 @@
                         <div class="form-group">
                             <label for="volunteerName">
                                 <i class="fas fa-user"></i>
-                                Your Name / Camp Contact
+                                Your Name / Camp Contact *
                             </label>
-                            <input type="text" id="volunteerName" placeholder="Enter your name or camp identifier" required>
+                            <input type="text" id="volunteerName" name="volunteerName" placeholder="Enter your name or camp identifier" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerPhone">
+                                <i class="fas fa-phone"></i>
+                                Phone Number *
+                            </label>
+                            <input type="tel" id="volunteerPhone" name="volunteerPhone" placeholder="Enter 10-digit phone number" pattern="[0-9+\-\s()]{10,}" required>
+                            <small class="form-help">Required for donors to contact you directly</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="volunteerEmail">
+                                <i class="fas fa-envelope"></i>
+                                Email Address (Optional)
+                            </label>
+                            <input type="email" id="volunteerEmail" name="volunteerEmail" placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="volunteerLocation">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Camp Location *
+                            </label>
+                            <input type="text" id="volunteerLocation" name="volunteerLocation" placeholder="City, State or Address" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="itemName">
                                 <i class="fas fa-boxes"></i>
-                                Supply Item Needed
+                                Supply Item Needed *
                             </label>
-                            <input type="text" id="itemName" placeholder="e.g., Emergency Blankets, Water Bottles, First Aid Kits" required>
+                            <input type="text" id="itemName" name="itemName" placeholder="e.g., Emergency Blankets, Water Bottles, First Aid Kits" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="quantity">
                                 <i class="fas fa-sort-numeric-up"></i>
-                                Quantity Required
+                                Quantity Required *
                             </label>
-                            <input type="number" id="quantity" placeholder="0" min="1" required>
+                            <input type="number" id="quantity" name="quantity" placeholder="0" min="1" max="10000" required>
                         </div>
                         
                         <div class="form-group urgency-group">
                             <label for="urgency">
                                 <i class="fas fa-exclamation-triangle"></i>
-                                Urgency Level
+                                Urgency Level *
                             </label>
-                            <select id="urgency" required>
+                            <select id="urgency" name="urgency" required>
                                 <option value="">Select urgency level</option>
                                 <option value="critical">🔴 Critical - Immediate Need</option>
                                 <option value="high">🟡 High - Within 24 Hours</option>
                                 <option value="medium">🟢 Medium - Within 48 Hours</option>
                             </select>
                         </div>
+
+                       
                     </div>
                     
                     <div class="form-actions">
@@ -133,12 +162,14 @@
             <!-- Active Needs Management -->
             <section class="content-card needs-management">
                 <div class="card-header">
-                    <div class="header-icon">
-                        <i class="fas fa-list-check"></i>
-                    </div>
-                    <div class="header-text">
-                        <h2>Active Relief Requests</h2>
-                        <p>Monitor and manage your posted needs</p>
+                    <div class="header-info">
+                        <div class="header-icon">
+                            <i class="fas fa-list-check"></i>
+                        </div>
+                        <div class="header-text">
+                            <h2>Active Relief Requests</h2>
+                            <p>Monitor and manage your posted needs</p>
+                        </div>
                     </div>
                     <div class="header-actions">
                         <button class="btn btn-ghost btn-small" id="refreshNeeds">
@@ -199,3 +230,4 @@
     <script src="js/volunteer.js"></script>
 </body>
 </html>
+

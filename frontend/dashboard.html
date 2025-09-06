@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impact Dashboard - Relief Camp Connect</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Impact Dashboard - AidConnect</title>
+    <link rel="stylesheet" href="css/dashboard.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="dashboard-page">
     <!-- Navigation -->
@@ -14,7 +14,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-hands-helping"></i>
-                <span>Relief Camp Connect</span>
+                <span>AidConnect</span>
             </div>
             <div class="portal-nav-links">
                 <a href="index.html" class="nav-link">
@@ -44,7 +44,7 @@
             <div class="dashboard-hero">
                 <div class="hero-content">
                     <div class="dashboard-title">
-                        <h1><i class="fas fa-chart-line"></i> Impact Dashboard</h1>
+                        <h1 style="color: cornflowerblue;"><i class="fas fa-chart-line"></i> Impact Dashboard</h1>
                         <p>Real-time transparency in disaster relief operations</p>
                     </div>
                     <div class="last-updated">
@@ -121,49 +121,7 @@
             </section>
 
             <!-- Progress Overview -->
-            <section class="progress-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-tasks"></i> Overall Progress</h2>
-                    <div class="progress-stats">
-                        <span class="progress-stat">
-                            <span class="stat-value" id="completionRate">0%</span>
-                            <span class="stat-label">Completion Rate</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="progress-cards">
-                    <div class="progress-card">
-                        <div class="progress-header">
-                            <span class="progress-title">Emergency Supplies</span>
-                            <span class="progress-value" id="suppliesProgress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="suppliesBar" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress-card">
-                        <div class="progress-header">
-                            <span class="progress-title">Medical Equipment</span>
-                            <span class="progress-value" id="medicalProgress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill medical" id="medicalBar" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress-card">
-                        <div class="progress-header">
-                            <span class="progress-title">Food & Water</span>
-                            <span class="progress-value" id="foodProgress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill food" id="foodBar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+     
 
             <!-- Data Table Section -->
             <section class="data-table-section">
@@ -245,31 +203,7 @@
             </section>
 
             <!-- Activity Feed -->
-            <section class="activity-feed">
-                <div class="feed-header">
-                    <h3><i class="fas fa-stream"></i> Live Activity Feed</h3>
-                    <div class="feed-controls">
-                        <button class="btn btn-ghost btn-small" id="pauseFeed">
-                            <i class="fas fa-pause"></i> Pause
-                        </button>
-                        <button class="btn btn-ghost btn-small" id="clearFeed">
-                            <i class="fas fa-trash"></i> Clear
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="activity-list" id="activityFeed">
-                    <div class="activity-item">
-                        <div class="activity-icon new">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <div class="activity-content">
-                            <span class="activity-text">System initialized - Ready to track relief operations</span>
-                            <span class="activity-time">Just now</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+     
         </div>
     </div>
 
@@ -287,3 +221,4 @@
     <script src="js/dashboard.js"></script>
 </body>
 </html>
+
