@@ -59,13 +59,13 @@ AidConnect/
 ---
 
 ## 🔧 Installation & Setup
-1. Clone the Repository
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/Sijosaju/AidConnect.git
 cd AidConnect
 ```
 
-2. Backend Setup
+### 2. Backend Setup
 
 Navigate to the backend/ folder.
 
@@ -78,17 +78,17 @@ Run Flask server:
 ```bash
 python app.py
 ```
-3. Frontend Setup
+### 3. Frontend Setup
 
 Navigate to the frontend/ folder.
 
 Open index.html in your browser or use a live server extension (e.g., in VS Code).
 
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Feel free to fork the repo and submit a pull request for improvements.
 
-📌 Future Enhancements
+## 📌 Future Enhancements
 
 User authentication for secure volunteer & donor login.
 
@@ -98,6 +98,6 @@ AI-based demand prediction during disasters.
 
 Offline support for low-connectivity regions.
 
-🌐 Project Link
+## 🌐 Project Link
 
 🔗 AidConnect – Disaster Relief Coordination Platform
